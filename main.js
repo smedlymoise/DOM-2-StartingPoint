@@ -8,12 +8,23 @@ root.addEventListener("click", (event) => {
 
 
 
-// Fill All Cells (Issue 8)
-const fillGridButton = document.getElementById("fill-grid");
+//  Fill all uncolored cells with selected color (Issue #7)
+const controlsDiv = document.querySelector("#root > div");
 
-fillGridButton.addEventListener("click", () => {
+const fillUncoloredButton = document.createElement("button");
+fillUncoloredButton.id = "fill-uncolored";
+fillUncoloredButton.textContent = "Fill Uncolored";
+
+controlsDiv.appendChild(fillUncoloredButton);
+
+fillUncoloredButton.addEventListener("click", () => {
+  const selectedColor = document.getElementById("color-select").value;
   const cells = document.querySelectorAll("td");
+
   cells.forEach(cell => {
-    cell.style.backgroundColor = selectedColor;
+    const bg = cell.style.backgroundColor;
+    if (!bg || bg === "transparent" || bg === "") {
+      cell.style.backgroundColor = selectedColor;
+    }
   });
 });
