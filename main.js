@@ -15,12 +15,15 @@ const removeColmnButton = document.getElementById('remove-column');
 
 
 
-// Remove Row (solution)
-removeRowButton.addEventListener("click", () => {
-  const rows = tbody.rows;
-  if (rows.length > 0) {
-    tbody.deleteRow(rows - 1);
-  }
+// Remove columns (solution)
+removeColmnButton.addEventListener('click' , () => {
+  const columnCount = tbody.rows[0].cells.length;
+ const allRows = table.querySelectorAll('tr');
+ allRows.forEach(row => {
+    if (row.cells.length >= columnCount) {
+      row.deleteCell(columnCount - 1);
+    }
+  })
 });
 
 
