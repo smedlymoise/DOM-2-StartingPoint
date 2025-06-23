@@ -1,31 +1,30 @@
-// Please feel free to change the JS as you see fit! This is just a starting point.
+let selectedColor = "red";
 
-const root = document.getElementById("root");
-root.addEventListener("click", (event) => {
-  console.log(event.target.tagName);
-  console.log(event.target);
+const colorSelect = document.getElementById("color-select");
+
+colorSelect.addEventListener("change", (event) => {
+  selectedColor = event.target.value;
+  console.log("Selected color:", selectedColor);
 });
 
-const  table = document.querySelector('table');
-const tbody = table.querySelector('tbody');
-const addRowButton = document.getElementById('add-row');
-const removeRowButton = document.getElementById('remove-row');
-const thead = table.querySelector('thead');
-const removeColmnButton = document.getElementById('remove-column');
+let mouseDown = false;
 
-
-
-// Remove Row (solution)
-removeRowButton.addEventListener("click", () => {
-  const rows = tbody.rows;
-  if (rows.length > 0) {
-    tbody.deleteRow(rows - 1);
-  }
+document.addEventListener("mousedown", () => {
+  mouseDown = true;
+});
+document.addEventListener("mouseup", () => {
+  mouseDown = false;
 });
 
+const squares = document.querySelectorAll("table td");
 
-
-
-
-
-
+squares.forEach(cell => {
+  cell.addEventListener("mousedown", () => {
+    cell.style.backgroundColor = selectedColor;
+}); 
+  cell.addEventListener("mouseover", () => {
+    if (mouseDown){
+      cell.style.backgroundColor = selectedColor;
+    }
+}); 
+});
